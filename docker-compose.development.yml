@@ -1,0 +1,8 @@
+services:
+
+  db:
+    image: mysql:8.4.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      
