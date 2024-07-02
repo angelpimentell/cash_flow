@@ -1,3 +1,4 @@
+import { DEFAULT_DECIMAL, DEFAULT_INTEGER } from 'src/constants';
 import { Column, PrimaryGeneratedColumn } from 'typeorm';
 
 export class Account {
@@ -7,6 +8,6 @@ export class Account {
   @Column()
   name: string;
 
-  @Column('decimal', { precision: 10, scale: 2 })
+  @Column('decimal', { precision: DEFAULT_INTEGER, scale: DEFAULT_DECIMAL })
   balance: number;
 }
