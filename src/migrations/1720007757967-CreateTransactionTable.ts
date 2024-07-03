@@ -42,7 +42,7 @@ export class CreateTransactionTable1720007757967 implements MigrationInterface {
       new TableForeignKey({
         columnNames: ['account_source_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'account',
+        referencedTableName: 'accounts',
         onDelete: 'CASCADE',
       }),
     );
@@ -52,13 +52,13 @@ export class CreateTransactionTable1720007757967 implements MigrationInterface {
       new TableForeignKey({
         columnNames: ['account_destination_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'account',
+        referencedTableName: 'accounts',
         onDelete: 'CASCADE',
       }),
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('transactions');
+    await queryRunner.dropTable('transactions');
   }
 }
