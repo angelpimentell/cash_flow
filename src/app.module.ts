@@ -5,6 +5,7 @@ import { AccountModule } from './Finance/account/account.module';
 import { TransactionModule } from './Finance/transaction/transaction.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Account } from './Finance/account/entities/account.entity';
 
 @Module({
   imports: [
@@ -21,7 +22,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         username: configService.get('DATABASE_USERNAME'),
         password: configService.get('DATABASE_PASSWORD'),
         database: configService.get('DATABASE_DATABASE'),
-        entities: [],
+        entities: [Account],
       }),
     }),
   ],
