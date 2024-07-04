@@ -6,6 +6,8 @@ import { TransactionModule } from './Finance/transaction/transaction.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Account } from './Finance/account/entities/account.entity';
+import { DataSource } from 'typeorm';
+
 
 @Module({
   imports: [
@@ -30,4 +32,8 @@ import { Account } from './Finance/account/entities/account.entity';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+
+export class AppModule {
+  constructor(private dataSource: DataSource) {}
+}
+

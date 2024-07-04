@@ -5,8 +5,6 @@ import { Account } from '../entities/account.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
-
-
 @Injectable()
 export class AccountService {
   constructor(
@@ -18,8 +16,8 @@ export class AccountService {
     return 'This action adds a new account';
   }
 
-  findAll() {
-    return this.accountRepository.find();
+  async findAll() {
+    return await this.accountRepository.find();
   }
 
   findOne(id: number) {
