@@ -1,5 +1,6 @@
 import { DEFAULT_DECIMAL, DEFAULT_INTEGER } from 'src/constants';
-import { Column, PrimaryGeneratedColumn, Entity } from 'typeorm';
+import { User } from 'src/user/entities/user.entity';
+import { Column, PrimaryGeneratedColumn, Entity, ManyToOne } from 'typeorm';
 
 @Entity('accounts')
 export class Account {
@@ -7,8 +8,14 @@ export class Account {
   id: number;
 
   @Column()
+  user_id: number;
+
+  @Column()
   name: string;
 
   @Column('decimal', { precision: DEFAULT_INTEGER, scale: DEFAULT_DECIMAL })
   balance: number;
+
+  @ManyToOne(() => User, (user) => user.accounts)
+  user: User;
 }

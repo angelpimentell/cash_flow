@@ -2,7 +2,6 @@ import { DEFAULT_DECIMAL, DEFAULT_INTEGER } from 'src/constants';
 import {
   MigrationInterface,
   QueryRunner,
-  TableForeignKey,
   Table,
 } from 'typeorm';
 
