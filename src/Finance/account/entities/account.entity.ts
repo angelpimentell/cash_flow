@@ -1,6 +1,7 @@
 import { DEFAULT_DECIMAL, DEFAULT_INTEGER } from 'src/constants';
+import { Transaction } from 'src/Finance/transaction/entities/transaction.entity';
 import { User } from 'src/user/entities/user.entity';
-import { Column, PrimaryGeneratedColumn, Entity, ManyToOne } from 'typeorm';
+import { Column, PrimaryGeneratedColumn, Entity, ManyToOne, OneToMany } from 'typeorm';
 
 @Entity('accounts')
 export class Account {
@@ -18,4 +19,7 @@ export class Account {
 
   @ManyToOne(() => User, (user) => user.accounts)
   user: User;
+
+  @OneToMany(() => Transaction, (transaction) => transaction.account)
+  transactions: Transaction[];
 }

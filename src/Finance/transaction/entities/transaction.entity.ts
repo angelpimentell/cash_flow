@@ -6,12 +6,16 @@ export class Transaction {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'decimal', precision: DEFAULT_INTEGER, scale: DEFAULT_DECIMAL })
+  @Column()
+  account_id: number;
+
+  @Column({
+    type: 'decimal',
+    precision: DEFAULT_INTEGER,
+    scale: DEFAULT_DECIMAL,
+  })
   amount: number;
 
-  @ManyToOne(() => Account)
-  account_source_id: Account;
-
-  @ManyToOne(() => Account)
-  account_destination_id: string;
+  @ManyToOne(() => Account, (account) => account.transactions)
+  account: Account;
 }

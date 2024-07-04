@@ -2,6 +2,7 @@ import { DEFAULT_DECIMAL, DEFAULT_INTEGER } from 'src/constants';
 import {
   MigrationInterface,
   QueryRunner,
+  TableForeignKey,
   Table,
 } from 'typeorm';
 
@@ -24,7 +25,21 @@ export class CreateTransactionTable1720007757967 implements MigrationInterface {
             precision: DEFAULT_INTEGER,
             scale: DEFAULT_DECIMAL,
           },
+          {
+            name: 'account_id',
+            type: 'int',
+          },
         ],
+      }),
+    );
+
+    await queryRunner.createForeignKey(
+      'transactions',
+      new TableForeignKey({
+        columnNames: ['account_id'],
+        referencedColumnNames: ['id'],
+        referencedTableName: 'accounts',
+        onDelete: 'CASCADE',
       }),
     );
   }
