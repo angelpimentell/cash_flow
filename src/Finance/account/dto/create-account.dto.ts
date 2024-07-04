@@ -1,9 +1,10 @@
-import { IsNumber, IsString, IsDecimal } from 'class-validator';
+import { IsNumber, IsString, IsDecimal, IsNotEmpty, ValidateNested } from 'class-validator';
+import { User } from 'src/user/entities/user.entity';
 
 export class CreateAccountDto {
   @IsString()
   name: string;
 
-  @IsNumber()
-  user_id: number;
+  @IsNotEmpty()
+  user_id: User;
 }

@@ -20,6 +20,6 @@ export class User {
   @Column()
   password: string;
 
-  @OneToMany(() => Account, (account) => account.user)
+  @OneToMany(() => Account, (account) => account.user_id)
   accounts: Account[];
 }
