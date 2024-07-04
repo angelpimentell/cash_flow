@@ -25,14 +25,6 @@ export class CreateTransactionTable1720007757967 implements MigrationInterface {
             precision: DEFAULT_INTEGER,
             scale: DEFAULT_DECIMAL,
           },
-          {
-            name: 'account_source_id',
-            type: 'int',
-          },
-          {
-            name: 'account_destination_id',
-            type: 'int',
-          },
         ],
       }),
     );
