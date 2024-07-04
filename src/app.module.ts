@@ -14,16 +14,17 @@ import { Account } from './Finance/account/entities/account.entity';
     ConfigModule.forRoot(),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
-      inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         type: 'mysql',
         host: configService.get('DATABASE_HOST'),
-        port: +configService.get('DATABASE_PORT'),
+        port: configService.get('DATABASE_PORT'),
         username: configService.get('DATABASE_USERNAME'),
         password: configService.get('DATABASE_PASSWORD'),
-        database: configService.get('DATABASE_DATABASE'),
-        entities: [Account],
+        database: configService.get('DATABASE_NAME'),
+        entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+        synchronize: true, // Be cautious about using synchronize in production
       }),
+      inject: [ConfigService],
     }),
   ],
   controllers: [AppController],
