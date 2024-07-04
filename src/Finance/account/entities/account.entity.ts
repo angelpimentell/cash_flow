@@ -1,7 +1,7 @@
 import { DEFAULT_DECIMAL, DEFAULT_INTEGER } from 'src/constants';
 import { Column, PrimaryGeneratedColumn, Entity } from 'typeorm';
 
-@Entity()
+@Entity('accounts')
 export class Account {
   @PrimaryGeneratedColumn()
   id: number;
