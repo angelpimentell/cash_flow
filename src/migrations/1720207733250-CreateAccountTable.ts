@@ -32,6 +32,7 @@ export class CreateAccountTable1720207733250 implements MigrationInterface {
             type: 'decimal',
             precision: DEFAULT_INTEGER,
             scale: DEFAULT_DECIMAL,
+            default: '0.00',
           },
         ],
       }),
