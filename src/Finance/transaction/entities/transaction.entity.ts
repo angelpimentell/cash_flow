@@ -1,7 +1,14 @@
 import { Account } from 'src/Finance/account/entities/account.entity';
 import { DEFAULT_DECIMAL, DEFAULT_INTEGER } from 'src/constants';
-import { Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import {
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+  Entity,
+} from 'typeorm';
 
+@Entity('entites')
 export class Transaction {
   @PrimaryGeneratedColumn()
   id: number;
@@ -16,6 +23,8 @@ export class Transaction {
   })
   amount: number;
 
-  @ManyToOne(() => Account, (account) => account.transactions)
+  @ManyToOne(() => Account, (account) => account.transactions, {
+    onDelete: 'CASCADE',
+  })
   account: Account;
 }
