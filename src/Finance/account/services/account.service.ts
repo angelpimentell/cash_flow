@@ -13,22 +13,22 @@ export class AccountService {
   ) {}
 
   create(createAccountDto: CreateAccountDto) {
-    return 'This action adds a new account';
+    return this.accountRepository.create(createAccountDto);
   }
 
-  async findAll() {
+  async findAll(): Promise<Account[]> {
     return await this.accountRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} account`;
+  async findOne(id: number): Promise<Account | null> {
+    return await this.accountRepository.findOneBy({ id });
   }
 
-  update(id: number, updateAccountDto: UpdateAccountDto) {
-    return `This action updates a #${id} account`;
+  async update(id: number, updateAccountDto: UpdateAccountDto) {
+    return await this.accountRepository.update(id, updateAccountDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} account`;
+  async remove(id: number) {
+    return await this.accountRepository.delete(id);
   }
 }
