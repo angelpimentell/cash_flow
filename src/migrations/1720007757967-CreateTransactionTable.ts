@@ -28,26 +28,6 @@ export class CreateTransactionTable1720007757967 implements MigrationInterface {
         ],
       }),
     );
-
-    await queryRunner.createForeignKey(
-      'transactions',
-      new TableForeignKey({
-        columnNames: ['account_source_id'],
-        referencedColumnNames: ['id'],
-        referencedTableName: 'accounts',
-        onDelete: 'CASCADE',
-      }),
-    );
-
-    await queryRunner.createForeignKey(
-      'transactions',
-      new TableForeignKey({
-        columnNames: ['account_destination_id'],
-        referencedColumnNames: ['id'],
-        referencedTableName: 'accounts',
-        onDelete: 'CASCADE',
-      }),
-    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
