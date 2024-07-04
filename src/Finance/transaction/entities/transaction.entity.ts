@@ -4,17 +4,20 @@ import {
   Column,
   PrimaryGeneratedColumn,
   ManyToOne,
-  JoinColumn,
   Entity,
+  JoinColumn,
 } from 'typeorm';
 
-@Entity('entites')
+@Entity('transactions')
 export class Transaction {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  account_id: number;
+  @ManyToOne(() => Account, (account) => account.transactions, {
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'account_id' })
+  account: Account;
 
   @Column({
     type: 'decimal',
@@ -22,9 +25,4 @@ export class Transaction {
     scale: DEFAULT_DECIMAL,
   })
   amount: number;
-
-  @ManyToOne(() => Account, (account) => account.transactions, {
-    onDelete: 'CASCADE',
-  })
-  account: Account;
 }
