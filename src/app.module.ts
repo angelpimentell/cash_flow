@@ -7,12 +7,14 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Account } from './Finance/account/entities/account.entity';
 import { DataSource } from 'typeorm';
+import { UserModule } from './user/user.module';
 
 
 @Module({
   imports: [
     AccountModule,
     TransactionModule,
+    UserModule,
     ConfigModule.forRoot(),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
@@ -32,7 +34,6 @@ import { DataSource } from 'typeorm';
   controllers: [AppController],
   providers: [AppService],
 })
-
 export class AppModule {
   constructor(private dataSource: DataSource) {}
 }
