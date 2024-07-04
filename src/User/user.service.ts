@@ -13,7 +13,7 @@ export class UserService {
   ) {}
 
   create(createUserDto: CreateUserDto) {
-    return this.userRepository.create(createUserDto);
+    return this.userRepository.save(createUserDto);
   }
 
   async findAll() {

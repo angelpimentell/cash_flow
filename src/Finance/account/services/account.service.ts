@@ -13,7 +13,7 @@ export class AccountService {
   ) {}
 
   create(createAccountDto: CreateAccountDto) {
-    return this.accountRepository.create(createAccountDto);
+    return this.accountRepository.save(createAccountDto);
   }
 
   async findAll(): Promise<Account[]> {
