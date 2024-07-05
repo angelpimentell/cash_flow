@@ -15,7 +15,7 @@ export class Account {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => User, (user) => user.accounts)
+  @ManyToOne(() => User, (user) => user.accounts, { nullable: false })
   @JoinColumn({ name: 'user_id' })
   user_id: User;
 

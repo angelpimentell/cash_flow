@@ -14,7 +14,7 @@ export class Transaction {
   id: number;
 
   @ManyToOne(() => Account, (account) => account.transactions, {
-    onDelete: 'CASCADE',
+    nullable: false,
   })
   @JoinColumn({ name: 'account_id' })
   account: Account;
