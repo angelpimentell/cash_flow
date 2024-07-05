@@ -10,15 +10,12 @@ import {
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { Public } from './auth.guard';
+import { signUserDto } from './dto/sign-in-user.dto';
 
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
-
-  @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
-  }
 
   @Get()
   findAll() {
@@ -35,14 +32,16 @@ export class UserController {
     return this.userService.update(+id, updateUserDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.userService.remove(+id);
-  }
-
+  @Public()
   @Post('sign-in')
-  signIn(@Body() createUserDto: CreateUserDto) {
+  signIn(@Body() createUserDto: signUserDto) {
     const { username, password } = createUserDto;
     return this.userService.signIn(username, password);
+  }
+
+  @Public()
+  @Post('sign-up')
+  singUp(@Body() createUserDto: CreateUserDto) {
+    return this.userService.create(createUserDto);
   }
 }
