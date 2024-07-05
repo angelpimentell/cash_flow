@@ -6,12 +6,12 @@ import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
 
-
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>,
+    private jwtService: JwtService,
   ) {}
 
   create(createUserDto: CreateUserDto) {
@@ -34,14 +34,18 @@ export class UserService {
     return await this.userRepository.delete(id);
   }
 
-  async signIn(username: string, pass: string): Promise<any> {
+  async signIn(
+    username: string,
+    pass: string,
+  ): Promise<{ access_token: string }> {
     const user = await this.findOne({ username: username });
+
     if (user?.password !== pass) {
       throw new UnauthorizedException();
     }
-    const { password, ...result } = user;
-    // TODO: Generate a JWT and return it here
-    // instead of the user object
-    return result;
+    const payload = { sub: user.id, username: user.username };
+    return {
+      access_token: await this.jwtService.signAsync(payload),
+    };
   }
 }
