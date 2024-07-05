@@ -34,6 +34,10 @@ export class UserService {
     return await this.userRepository.delete(id);
   }
 
+  signUp(createUserDto: CreateUserDto) {
+    return this.userRepository.save(createUserDto);
+  }
+
   async signIn(
     username: string,
     pass: string,
