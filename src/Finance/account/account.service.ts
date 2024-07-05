@@ -16,8 +16,10 @@ export class AccountService {
     return this.accountRepository.save(createAccountDto);
   }
 
-  async findAll(): Promise<Account[]> {
-    return await this.accountRepository.find();
+  async findAll(user: object): Promise<Account[]> {
+    return await this.accountRepository.find({
+      where: user,
+    });
   }
 
   async findOne(id: number): Promise<Account | null> {
