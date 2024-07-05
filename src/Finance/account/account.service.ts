@@ -17,9 +17,7 @@ export class AccountService {
   }
 
   async findAll(user: object): Promise<Account[]> {
-    return await this.accountRepository.find({
-      where: user,
-    });
+    return await this.accountRepository.find({where: user});
   }
 
   async findOne(id: number): Promise<Account | null> {
