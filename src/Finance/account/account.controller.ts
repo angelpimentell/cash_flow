@@ -35,12 +35,18 @@ export class AccountController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAccountDto: UpdateAccountDto) {
-    return this.accountService.update(+id, updateAccountDto);
+  update(
+    @Request() rq,
+    @Param('id') id: string,
+    @Body() updateAccountDto: UpdateAccountDto,
+  ) {
+    const accountData = { id: id, user_id: rq.user.sub };
+    return this.accountService.update(accountData, updateAccountDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.accountService.remove(+id);
+  remove(@Request() rq, @Param('id') id: string) {
+    const accountData = { id: id, user_id: rq.user.sub };
+    return this.accountService.remove(accountData);
   }
 }

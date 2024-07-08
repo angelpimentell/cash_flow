@@ -17,18 +17,18 @@ export class AccountService {
   }
 
   async findAll(user: object): Promise<Account[]> {
-    return await this.accountRepository.find({where: user});
+    return await this.accountRepository.find({ where: user });
   }
 
   async findOne(id: number): Promise<Account | null> {
     return await this.accountRepository.findOneBy({ id });
   }
 
-  async update(id: number, updateAccountDto: UpdateAccountDto) {
-    return await this.accountRepository.update(id, updateAccountDto);
+  async update(data: object, updateAccountDto: UpdateAccountDto) {
+    return await this.accountRepository.update(data, updateAccountDto);
   }
 
-  async remove(id: number) {
-    return await this.accountRepository.delete(id);
+  async remove(data: object) {
+    return await this.accountRepository.delete(data);
   }
 }
